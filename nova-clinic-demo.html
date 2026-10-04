@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOVA CLINIC — Advanced Care</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#182522;--muted:#697570;--cream:#f5f2ec;--paper:#fcfbf8;--sage:#789187;--line:rgba(24,37,34,.12);--white:#fff;--radius:28px}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:"DM Sans",sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden}a{text-decoration:none;color:inherit}button,input,select{font:inherit}
+.nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);width:min(1180px,calc(100% - 32px));padding:13px 16px 13px 22px;background:rgba(252,251,248,.72);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.7);border-radius:999px;z-index:30;display:flex;align-items:center;justify-content:space-between;box-shadow:0 10px 40px rgba(20,35,30,.08)}
+.logo{font-weight:700;letter-spacing:.18em;font-size:14px}.navlinks{display:flex;gap:27px;font-size:12px;color:#56625e}.navlinks a:hover{color:var(--ink)}.navright{display:flex;align-items:center;gap:8px}.book{background:var(--ink);color:#fff;padding:11px 17px;border-radius:999px;font-size:11px;font-weight:700}
+.langFloat{position:fixed;right:24px;bottom:94px;width:58px;height:58px;border-radius:50%;border:1px solid rgba(255,255,255,.8);background:rgba(24,37,34,.92);color:#fff;z-index:40;cursor:pointer;font-size:11px;font-weight:700;letter-spacing:.08em;box-shadow:0 15px 38px rgba(0,0,0,.2);transition:.3s}.langFloat:hover{transform:translateY(-4px) rotate(5deg);box-shadow:0 20px 45px rgba(0,0,0,.26)}
+.hero{min-height:100vh;padding:145px 5vw 70px;display:grid;grid-template-columns:1fr 1.08fr;gap:5vw;align-items:center;background:radial-gradient(circle at 12% 15%,#e8eee9 0,transparent 30%),var(--paper)}
+.kicker{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--sage);font-weight:700;margin-bottom:24px}.hero h1{font-family:"Playfair Display",serif;font-size:clamp(58px,8vw,122px);line-height:.88;letter-spacing:-.055em;font-weight:500;max-width:720px}.hero h1 em{font-style:normal;color:var(--sage)}.hero p{max-width:510px;color:var(--muted);line-height:1.75;margin:30px 0}.heroActions{display:flex;gap:12px;flex-wrap:wrap}.primary,.secondary{padding:15px 21px;border-radius:999px;border:1px solid var(--ink);font-size:12px;font-weight:700;cursor:pointer}.primary{background:var(--ink);color:#fff}.secondary{background:transparent}.heroVisual{height:min(690px,72vh);min-height:480px;border-radius:34px;overflow:hidden;position:relative;background:#c7d1cc;box-shadow:0 30px 80px rgba(30,45,40,.16)}.heroVisual:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(18,30,26,.62));z-index:1}.heroPhoto{width:100%;height:100%;object-fit:cover;filter:saturate(.75)}.heroBadge{position:absolute;left:25px;bottom:25px;z-index:2;color:white}.heroBadge small{display:block;opacity:.72;font-size:10px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px}.heroBadge strong{font-family:"Playfair Display";font-size:30px;font-weight:500}.scroll{position:absolute;bottom:24px;left:5vw;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#71807a}
+.marquee{overflow:hidden;background:var(--ink);color:#fff;padding:17px 0;white-space:nowrap}.marquee div{display:inline-block;animation:move 25s linear infinite;font-size:11px;letter-spacing:.2em;text-transform:uppercase}@keyframes move{to{transform:translateX(-50%)}}
+.section{padding:120px 5vw}.sectionHead{display:flex;justify-content:space-between;gap:40px;align-items:end;margin-bottom:50px}.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.22em;color:var(--sage);font-weight:700;margin-bottom:14px}.section h2{font-family:"Playfair Display";font-size:clamp(40px,5vw,72px);line-height:.95;font-weight:500;letter-spacing:-.04em}.sectionIntro{max-width:410px;color:var(--muted);line-height:1.7;font-size:14px}
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.service{min-height:260px;border:1px solid var(--line);border-radius:var(--radius);padding:26px;background:#fff;transition:.45s;position:relative;overflow:hidden}.service:hover{transform:translateY(-8px);box-shadow:0 24px 50px rgba(25,40,35,.09)}.serviceNum{font-size:10px;color:var(--sage)}.service h3{font-family:"Playfair Display";font-size:30px;font-weight:500;margin-top:75px}.service p{color:var(--muted);font-size:12px;line-height:1.65;margin-top:12px}.arrow{position:absolute;right:22px;top:22px;width:34px;height:34px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center}
+
+.results{background:var(--cream);padding:95px 5vw}.caseTrack{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:5px 4px 28px;cursor:grab;scrollbar-width:thin}.caseTrack:active{cursor:grabbing}.case{flex:0 0 clamp(265px,31vw,390px);scroll-snap-align:start;background:#fff;border-radius:24px;padding:10px;box-shadow:0 12px 35px rgba(20,35,30,.07)}.caseVisual{height:340px;position:relative;border-radius:18px;overflow:hidden;background:#d8ddd9}.caseVisual img{position:absolute;width:100%;height:100%;object-fit:cover}.caseAfter{clip-path:inset(0 0 0 50%)}.caseLine{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;z-index:4;transform:translateX(-1px);pointer-events:none}.caseHandle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 7px 25px rgba(0,0,0,.18);z-index:5;pointer-events:none}.caseRange{position:absolute;inset:0;width:100%;opacity:0;cursor:ew-resize;z-index:6}.tag{position:absolute;top:13px;padding:7px 9px;border-radius:999px;background:rgba(255,255,255,.9);font-size:9px;letter-spacing:.14em;text-transform:uppercase;z-index:3}.beforeTag{left:13px}.afterTag{right:13px}.caseInfo{padding:14px 6px 8px}.caseInfo h3{font-family:"Playfair Display";font-size:22px;font-weight:500}.caseInfo p{font-size:11px;color:var(--muted);margin-top:5px}.trackHint{font-size:10px;color:var(--muted);margin-top:14px;letter-spacing:.12em;text-transform:uppercase}
+
+.doctors{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.doctorImg{height:480px;border-radius:25px;overflow:hidden;background:#dce3df}.doctorImg img{width:100%;height:100%;object-fit:cover;transition:.7s}.doctor:hover img{transform:scale(1.045)}.doctorMeta{padding:18px 4px}.doctorMeta h3{font-family:"Playfair Display";font-size:25px;font-weight:500}.doctorMeta p{color:var(--muted);font-size:12px;margin-top:6px}
+.stats{background:var(--ink);color:white;display:grid;grid-template-columns:repeat(4,1fr);padding:70px 5vw;gap:30px}.stat b{font-family:"Playfair Display";font-size:54px;font-weight:500}.stat span{display:block;color:#aab6b0;font-size:11px;margin-top:6px}
+.testimonial{display:grid;grid-template-columns:.75fr 1.25fr;gap:70px;align-items:center}.quote{font-family:"Playfair Display";font-size:clamp(30px,4vw,57px);line-height:1.05}.person{margin-top:25px;color:var(--muted);font-size:12px}
+.booking{background:linear-gradient(135deg,#dfe7e2,#edf0eb);border-radius:38px;padding:55px;display:grid;grid-template-columns:1fr 1fr;gap:60px}.booking h2{max-width:500px}.form{display:grid;gap:11px}.form input,.form select{border:1px solid var(--line);background:rgba(255,255,255,.65);padding:16px;border-radius:13px;outline:none}.form button{margin-top:5px;border:0;background:var(--ink);color:#fff;border-radius:13px;padding:16px;cursor:pointer;font-weight:700}.note{font-size:10px;color:var(--muted);margin-top:9px}
+.footer{padding:45px 5vw;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:var(--muted);font-size:11px}.whatsapp{position:fixed;right:24px;bottom:24px;width:58px;height:58px;border-radius:50%;background:#1e8e63;color:white;display:grid;place-items:center;z-index:40;box-shadow:0 14px 35px rgba(0,0,0,.2);font-size:24px}
+.reveal{opacity:0;transform:translateY(35px);transition:opacity .8s,transform .8s}.reveal.show{opacity:1;transform:none}
+[dir="rtl"] .heroBadge{left:auto;right:25px}[dir="rtl"] .scroll{left:auto;right:5vw}[dir="rtl"] .beforeTag{left:auto;right:13px}[dir="rtl"] .afterTag{right:auto;left:13px}[dir="rtl"] .caseLine{transform:translateX(1px)}
+@media(max-width:850px){.navlinks{display:none}.hero{grid-template-columns:1fr;padding-top:125px}.heroVisual{height:62vh;min-height:420px}.services,.doctors{grid-template-columns:1fr}.sectionHead,.testimonial,.booking{grid-template-columns:1fr;display:grid}.stats{grid-template-columns:1fr 1fr}.booking{padding:32px}.doctorImg{height:430px}.langFloat{right:18px;bottom:92px}.whatsapp{right:18px;bottom:18px}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="logo" href="#">NOVA</a>
+  <div class="navlinks">
+    <a href="#care" data-t="navCare">Care</a><a href="#results" data-t="navResults">Results</a><a href="#doctors" data-t="navDoctors">Doctors</a><a href="#booking" data-t="navBooking">Booking</a>
+  </div>
+  <div class="navright"><a class="book" href="#booking" data-t="book">Book a visit</a></div>
+</nav>
+
+<button class="langFloat" id="langBtn" aria-label="Switch language">AR</button>
+
+<main>
+<section class="hero">
+  <div class="reveal">
+    <div class="kicker" data-t="kicker">Advanced care · Human approach</div>
+    <h1 data-t="heroTitle">Care that feels <em>different.</em></h1>
+    <p data-t="heroText">A new generation of medical care — thoughtful specialists, modern technology, and an experience designed around you.</p>
+    <div class="heroActions"><a class="primary" href="#booking" data-t="heroBtn">Book your appointment</a><a class="secondary" href="#results" data-t="explore">Explore results</a></div>
+  </div>
+  <div class="heroVisual reveal">
+    <img class="heroPhoto" src="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&w=1400&q=85" alt="Modern clinic" data-alt="heroAlt">
+    <div class="heroBadge"><small>NOVA CLINIC</small><strong data-t="heroBadge">Medicine, reimagined.</strong></div>
+  </div>
+  <div class="scroll" data-t="scroll">Scroll to discover ↓</div>
+</section>
+
+<div class="marquee"><div data-t="marquee">Precision · Experience · Technology · Compassion · Precision · Experience · Technology · Compassion · </div></div>
+
+<section class="section" id="care">
+  <div class="sectionHead reveal"><div><div class="eyebrow" data-t="ey1">01 — What we do</div><h2 data-t="careTitle">Specialized care.<br>Beautifully simple.</h2></div><p class="sectionIntro" data-t="careText">From consultation to follow-up, every detail is built to make excellent healthcare feel effortless.</p></div>
+  <div class="services">
+    <article class="service reveal"><span class="serviceNum">01</span><span class="arrow">↗</span><h3 data-t="s1h">Dental Care</h3><p data-t="s1p">Restorative, cosmetic and preventive dentistry with a meticulous approach.</p></article>
+    <article class="service reveal"><span class="serviceNum">02</span><span class="arrow">↗</span><h3 data-t="s2h">Dermatology</h3><p data-t="s2p">Evidence-led skin care, aesthetics and personalized treatment plans.</p></article>
+    <article class="service reveal"><span class="serviceNum">03</span><span class="arrow">↗</span><h3 data-t="s3h">Wellness</h3><p data-t="s3p">Modern consultations and long-term care designed around your goals.</p></article>
+  </div>
+</section>
+
+<section class="results" id="results">
+  <div class="sectionHead reveal"><div><div class="eyebrow" data-t="ey2">02 — Real results</div><h2 data-t="resultsTitle">See the<br>difference.</h2></div><p class="sectionIntro" data-t="resultsText">Eight selected cases. Drag inside each card to compare, then swipe sideways to explore more.</p></div>
+  <div class="caseTrack" id="caseTrack"></div>
+  <div class="trackHint" data-t="swipeHint">← Swipe sideways to explore all cases →</div>
+</section>
+
+<section class="section" id="doctors">
+  <div class="sectionHead reveal"><div><div class="eyebrow" data-t="ey3">03 — Specialists</div><h2 data-t="doctorTitle">Meet the<br>people behind NOVA.</h2></div></div>
+  <div class="doctors">
+    <article class="doctor reveal"><div class="doctorImg"><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=900&q=85" alt="Doctor"></div><div class="doctorMeta"><h3>Dr. Lina Hassan</h3><p data-t="d1">Consultant · Aesthetic Dentistry</p></div></article>
+    <article class="doctor reveal"><div class="doctorImg"><img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=900&q=85" alt="Doctor"></div><div class="doctorMeta"><h3>Dr. Adam Kareem</h3><p data-t="d2">Consultant · Dermatology</p></div></article>
+    <article class="doctor reveal"><div class="doctorImg"><img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=900&q=85" alt="Doctor"></div><div class="doctorMeta"><h3>Dr. Maya Ali</h3><p data-t="d3">Specialist · Wellness & Care</p></div></article>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="stat"><b>15+</b><span data-t="stat1">Years of experience</span></div><div class="stat"><b>20K+</b><span data-t="stat2">Patients cared for</span></div><div class="stat"><b>12</b><span data-t="stat3">Specialists</span></div><div class="stat"><b>4.9/5</b><span data-t="stat4">Patient rating</span></div>
+</section>
+
+<section class="section">
+  <div class="testimonial reveal"><div><div class="eyebrow" data-t="ey4">04 — Patient stories</div><h2 data-t="storyTitle">Trusted by<br>thousands.</h2></div><div><div class="quote" data-t="quote">“From the first consultation, everything felt considered. The care was exceptional and the whole experience was effortless.”</div><div class="person" data-t="person">— Sarah M. · NOVA patient</div></div></div>
+</section>
+
+<section class="section" id="booking">
+  <div class="booking reveal">
+    <div><div class="eyebrow" data-t="ey5">05 — Appointments</div><h2 data-t="bookingTitle">Let's make your next visit the easiest one.</h2><p class="sectionIntro" style="margin-top:22px" data-t="bookingText">Choose a specialty, tell us when you prefer to visit, and our team will confirm your appointment.</p></div>
+    <form class="form" id="bookingForm">
+      <input id="name" required data-ph="name" placeholder="Full name">
+      <input id="phone" required type="tel" data-ph="phone" placeholder="Phone number">
+      <select id="specialty" required><option value="" data-t="choose">Choose specialty</option><option value="Dental Care" data-t="optDental">Dental Care</option><option value="Dermatology" data-t="optDerma">Dermatology</option><option value="Wellness" data-t="optWell">Wellness</option></select>
+      <input id="date" required type="date">
+      <button type="submit" data-t="submit">Request appointment →</button>
+      <div class="note" data-t="note">Your request will open WhatsApp with the appointment details.</div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="footer"><span>© 2026 NOVA CLINIC</span><span data-t="footer">Precision · Care · Confidence</span></footer>
+<a class="whatsapp" href="https://wa.me/201500576313" target="_blank" aria-label="WhatsApp">◔</a>
+
+<script>
+const cases=[
+["Smile Design","https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=900&q=85"],
+["Dental Care","https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=900&q=80","https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=900&q=80"],
+["Aesthetic Care","https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1606265752439-1f18756aa5fc?auto=format&fit=crop&w=900&q=85"],
+["Whitening","https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=900&q=80","https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=900&q=80"],
+["Skin Care","https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=900&q=85"],
+["Laser Care","https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=900&q=85","https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=900&q=85"],
+["Restorative Care","https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=900&q=80","https://images.unsplash.com/photo-1606265752439-1f18756aa5fc?auto=format&fit=crop&w=900&q=80"],
+["Complete Smile","https://images.unsplash.com/photo-1606265752439-1f18756aa5fc?auto=format&fit=crop&w=900&q=80","https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=900&q=80"]
+];
+
+const track=document.getElementById("caseTrack");
+track.innerHTML=cases.map((c,i)=>`<article class="case reveal"><div class="caseVisual"><img class="caseBefore" src="${c[1]}" alt="Before"><img class="caseAfter" src="${c[2]}" alt="After"><span class="tag beforeTag" data-t="before">Before</span><span class="tag afterTag" data-t="after">After</span><div class="caseLine"></div><div class="caseHandle">↔</div><input class="caseRange" type="range" min="0" max="100" value="50" aria-label="Before and after comparison"></div><div class="caseInfo"><h3>${c[0]}</h3><p data-t="caseCaption">Interactive before & after case</p></div></article>`).join("");
+
+track.querySelectorAll(".case").forEach(card=>{
+ const range=card.querySelector(".caseRange"), after=card.querySelector(".caseAfter"), line=card.querySelector(".caseLine");
+ range.addEventListener("input",()=>{after.style.clipPath=`inset(0 0 0 ${range.value}%)`;line.style.left=range.value+"%"});
+});
+
+const translations={
+en:{
+navCare:"Care",navResults:"Results",navDoctors:"Doctors",navBooking:"Booking",book:"Book a visit",
+kicker:"Advanced care · Human approach",heroTitle:"Care that feels <em>different.</em>",heroText:"A new generation of medical care — thoughtful specialists, modern technology, and an experience designed around you.",heroBtn:"Book your appointment",explore:"Explore results",heroBadge:"Medicine, reimagined.",scroll:"Scroll to discover ↓",
+marquee:"Precision · Experience · Technology · Compassion · Precision · Experience · Technology · Compassion ·",
+ey1:"01 — What we do",careTitle:"Specialized care.<br>Beautifully simple.",careText:"From consultation to follow-up, every detail is built to make excellent healthcare feel effortless.",
+s1h:"Dental Care",s1p:"Restorative, cosmetic and preventive dentistry with a meticulous approach.",s2h:"Dermatology",s2p:"Evidence-led skin care, aesthetics and personalized treatment plans.",s3h:"Wellness",s3p:"Modern consultations and long-term care designed around your goals.",
+ey2:"02 — Real results",resultsTitle:"See the<br>difference.",resultsText:"Eight selected cases. Drag inside each card to compare, then swipe sideways to explore more.",swipeHint:"← Swipe sideways to explore all cases →",before:"Before",after:"After",caseCaption:"Interactive before & after case",
+ey3:"03 — Specialists",doctorTitle:"Meet the<br>people behind NOVA.",d1:"Consultant · Aesthetic Dentistry",d2:"Consultant · Dermatology",d3:"Specialist · Wellness & Care",
+stat1:"Years of experience",stat2:"Patients cared for",stat3:"Specialists",stat4:"Patient rating",
+ey4:"04 — Patient stories",storyTitle:"Trusted by<br>thousands.",quote:"“From the first consultation, everything felt considered. The care was exceptional and the whole experience was effortless.”",person:"— Sarah M. · NOVA patient",
+ey5:"05 — Appointments",bookingTitle:"Let's make your next visit the easiest one.",bookingText:"Choose a specialty, tell us when you prefer to visit, and our team will confirm your appointment.",name:"Full name",phone:"Phone number",choose:"Choose specialty",optDental:"Dental Care",optDerma:"Dermatology",optWell:"Wellness",submit:"Request appointment →",note:"Your request will open WhatsApp with the appointment details.",footer:"Precision · Care · Confidence"
+},
+ar:{
+navCare:"الرعاية",navResults:"النتائج",navDoctors:"الأطباء",navBooking:"الحجز",book:"احجز موعدك",
+kicker:"رعاية متقدمة · اهتمام إنساني",heroTitle:"رعاية تشعر أنها <em>مختلفة.</em>",heroText:"جيل جديد من الرعاية الطبية — أطباء متخصصون، تكنولوجيا حديثة، وتجربة مصممة حولك.",heroBtn:"احجز موعدك",explore:"شاهد النتائج",heroBadge:"الطب برؤية جديدة.",scroll:"اكتشف المزيد ↓",
+marquee:"دقة · خبرة · تكنولوجيا · اهتمام · دقة · خبرة · تكنولوجيا · اهتمام ·",
+ey1:"01 — خدماتنا",careTitle:"رعاية متخصصة.<br>ببساطة راقية.",careText:"من الاستشارة وحتى المتابعة، كل تفصيلة مصممة لتجعل الرعاية الطبية الممتازة أكثر سهولة.",
+s1h:"طب الأسنان",s1p:"علاجات ترميمية وتجميلية ووقائية بأسلوب دقيق ومتطور.",s2h:"الأمراض الجلدية",s2p:"عناية متقدمة بالبشرة والتجميل وخطط علاج مصممة خصيصًا لك.",s3h:"العافية والرعاية",s3p:"استشارات حديثة ورعاية طويلة المدى مصممة وفق احتياجاتك.",
+ey2:"02 — نتائج حقيقية",resultsTitle:"شاهد<br>الفرق.",resultsText:"ثماني حالات مختارة. اسحب داخل كل بطاقة للمقارنة، ثم حرّك أفقيًا لاستكشاف المزيد.",swipeHint:"← اسحب أفقيًا لاستكشاف جميع الحالات →",before:"قبل",after:"بعد",caseCaption:"حالة تفاعلية قبل وبعد",
+ey3:"03 — المتخصصون",doctorTitle:"تعرّف على<br>فريق NOVA.",d1:"استشاري · تجميل الأسنان",d2:"استشاري · الأمراض الجلدية",d3:"أخصائي · العافية والرعاية",
+stat1:"سنوات من الخبرة",stat2:"مريض تمت رعايته",stat3:"طبيب ومتخصص",stat4:"تقييم المرضى",
+ey4:"04 — تجارب المرضى",storyTitle:"ثقة<br>الآلاف.",quote:"«من أول استشارة، شعرت أن كل تفصيلة محسوبة. الرعاية كانت استثنائية والتجربة كلها كانت سهلة ومريحة.»",person:"— سارة م. · إحدى مريضات NOVA",
+ey5:"05 — المواعيد",bookingTitle:"خلّي زيارتك القادمة أسهل تجربة ممكنة.",bookingText:"اختر التخصص وحدد الوقت المناسب لك، وسيتواصل معك فريقنا لتأكيد الموعد.",name:"الاسم بالكامل",phone:"رقم الهاتف",choose:"اختر التخصص",optDental:"طب الأسنان",optDerma:"الأمراض الجلدية",optWell:"العافية والرعاية",submit:"طلب حجز الموعد →",note:"سيتم فتح واتساب وإرسال تفاصيل طلب الحجز.",footer:"دقة · رعاية · ثقة"
+}};
+
+let isArabic=false;
+const langBtn=document.getElementById("langBtn");
+function applyLang(){
+ const t=isArabic?translations.ar:translations.en;
+ document.documentElement.lang=isArabic?"ar":"en";
+ document.documentElement.dir=isArabic?"rtl":"ltr";
+ langBtn.textContent=isArabic?"EN":"AR";
+ document.querySelectorAll("[data-t]").forEach(el=>{const k=el.dataset.t;if(t[k]!==undefined)el.innerHTML=t[k]});
+ document.querySelectorAll("[data-ph]").forEach(el=>{const k=el.dataset.ph;if(t[k])el.placeholder=t[k]});
+ document.querySelectorAll("[data-alt]").forEach(el=>el.alt=isArabic?"عيادة حديثة":"Modern clinic");
+}
+langBtn.onclick=()=>{isArabic=!isArabic;applyLang()};
+
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add("show")}),{threshold:.08});
+document.querySelectorAll(".reveal").forEach(x=>obs.observe(x));
+
+document.getElementById("bookingForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ const name=document.getElementById("name").value.trim();
+ const phone=document.getElementById("phone").value.trim();
+ const spec=document.getElementById("specialty").value;
+ const date=document.getElementById("date").value;
+ const msg=isArabic
+ ? `مرحبًا NOVA CLINIC 👋%0Aأرغب في حجز موعد.%0Aالاسم: ${encodeURIComponent(name)}%0Aالهاتف: ${encodeURIComponent(phone)}%0Aالتخصص: ${encodeURIComponent(spec)}%0Aالتاريخ المطلوب: ${encodeURIComponent(date)}`
+ : `Hello NOVA CLINIC 👋%0AI'd like to book an appointment.%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0ASpecialty: ${encodeURIComponent(spec)}%0APreferred date: ${encodeURIComponent(date)}`;
+ window.open("https://wa.me/201500576313?text="+msg,"_blank");
+});
+applyLang();
+</script>
+</body>
+</html>
